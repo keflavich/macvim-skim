@@ -1,12 +1,11 @@
 #!/bin/sh
 
 # set install path
-HOMEDIR=~
 if [ ! $PREFIX ];
 then
-    PREFIX="$HOMEDIR/bin/"
+    PREFIX=$HOME
 fi
-VIMDIR="$HOMEDIR/.vim/"
+VIMDIR=$HOME/.vim/
 
 # get relevant scripts
 # echo "Getting macvim-load-line from googlecode repository"
@@ -15,7 +14,7 @@ VIMDIR="$HOMEDIR/.vim/"
 # echo "Getting WhichTab.vim from googlecode repository"
 # curl -s http://agpy.googlecode.com/svn/trunk/macvim-skim/WhichTab.vim > ${VIMDIR}/plugin/WhichTab.vim
 chmod +x macvim-skim/macvim-load-line
-cp macvim-skim/macvim-load-line $PREFIX/
+cp macvim-skim/macvim-load-line $PREFIX/bin/
 cp macvim-skim/WhichTab.vim $VIMDIR/
 
 if [ ! -d /Applications/Skim.app ]
