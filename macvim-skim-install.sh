@@ -5,7 +5,10 @@ if [ ! $PREFIX ];
 then
     PREFIX=$HOME
 fi
-VIMDIR=$HOME/.vim/
+if [ ! $VIMDIR ];
+then
+    VIMDIR=$HOME/.vim/
+fi
 
 # get relevant scripts
 # echo "Getting macvim-load-line from googlecode repository"
@@ -34,19 +37,13 @@ then
     hdiutil eject /Volumes/Skim
 fi
 
-# Add lines to .vimrc 
-if [[ `grep 'map ,[rvpmt]' ${HOMEDIR}/.vimrc` == "" ]]; 
+# Add lines to ~/.vim/ftplugin/tex.vim 
+if [ -e $VIMDIR/ftplugin/tex.vim ];
 then
-    echo "Did not find mappings in ${HOMEDIR}/.vimrc.  Appending them."
-    echo \" Activate skim >> ${HOMEDIR}/.vimrc
-    echo let g:macvim_skim_app_path='/Applications/Skim.app' >> ${HOMEDIR}/.vimrc
-    echo 'execute("map ,v :w<CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>")' >> ${HOMEDIR}/.vimrc
-    echo 'execute("map ,p :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>")' >> ${HOMEDIR}/.vimrc
-    echo 'execute("map ,m :w<CR>:silent !make <CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>")' >> ${HOMEDIR}/.vimrc
-    echo '\" Reactivate VIM' >> ${HOMEDIR}/.vimrc
-    echo 'execute("map ,r :w<CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>")' >> ${HOMEDIR}/.vimrc
-    echo 'execute("map ,t :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>")' >> ${HOMEDIR}/.vimrc
-
+    echo "Found a tex.vim in ${HOMEDIR}/ftplugin/.  Appending to it."
+    cat ftplugin/tex.vim >> $VIMDIR/ftplugin/tex.vim
+else
+    cp ftplugin/tex.vim $VIMDIR/ftplugin/tex.vim
 fi
 
 # set Skim settings
