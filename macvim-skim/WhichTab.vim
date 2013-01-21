@@ -2,7 +2,7 @@ function! WhichTab(filename)
     " Try to determine whether file is open in any tab.  
     " Return number of tab it's open in
     " If it's open in multiple tabs, return the leftmost
-    let buffername = bufname(a:filename)
+    let buffername = bufname('\(^\|\/\)' . a:filename . '$')
     if buffername == ""
         return 0
     endif
