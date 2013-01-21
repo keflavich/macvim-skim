@@ -22,13 +22,19 @@ From Skim:
 INSTALLATION
 ------------
 Easiest way: run `macvim-skim-install.sh`.  By default, installs a shell script
-to your `$HOME/bin/` directory, installs the latest `Skim.app` if it's not already
+to your `$HOME/bin/` directory, installs `Skim.app` version 1.4.1 if Skim is not already
 installed, and puts `WhichTab.vim` in your plugins directory.  It will also add
 the shortcut lines to your `$HOME/.vimrc`.
 
+### INSTALLATION OPTIONS ###
+
+Variables used in installation process:
+ * `PREFIX`  (default `$HOME/bin`)
+ * `VIMDIR`  (default `$HOME/.vim/`)
+ * `SKIMPATH` (default `/Applications/Skim.app`)
+
 If you want to specify a different install directory for the executable file, specify the
 `PREFIX` variable, e.g.:
-
 `PREFIX=/usr/local ./macvim-skim-install.sh`
 
 You can also specify the path to `Skim.app` with the variable `SKIMPATH`.  If
