@@ -17,14 +17,20 @@ chmod +x macvim-skim/macvim-load-line
 cp macvim-skim/macvim-load-line $PREFIX/bin/
 cp macvim-skim/WhichTab.vim $VIMDIR/
 
-if [ ! -d /Applications/Skim.app ]
+if [ ! $SKIMPATH ];
+then
+    SKIMPATH=/Applications/Skim.app
+fi
+
+if [ ! -d $SKIMPATH ]
 then
     # get Skim.app 
     # should work, but doesn't curl -L http://sourceforge.net/projects/skim-app/files/latest/download?source=files -o Skim.dmg
-    echo "Did not find /Applications/Skim.app.  Downloading and installing 1.3.19."
-    curl -L "http://downloads.sourceforge.net/project/skim-app/Skim/Skim-1.3.19/Skim-1.3.19.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fskim-app%2F&ts=1326916683&use_mirror=superb-dca2" -o Skim.dmg
+    echo "Did not find $SKIMPATH.  Downloading and installing latest skim."
+    #curl -L "http://downloads.sourceforge.net/project/skim-app/Skim/Skim-1.3.19/Skim-1.3.19.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fskim-app%2F&ts=1326916683&use_mirror=superb-dca2" -o Skim.dmg
+    curl -L "http://sourceforge.net/projects/skim-app/files/latest/download?source=files -o Skim.dmg"
     hdid Skim.dmg
-    cp -r /Volumes/Skim/Skim.app /Applications
+    cp -r /Volumes/Skim/Skim.app $SKIMPATH
     hdiutil eject /Volumes/Skim
 fi
 
@@ -33,12 +39,12 @@ if [[ `grep 'map ,[rvpmt]' ${HOMEDIR}/.vimrc` == "" ]];
 then
     echo "Did not find mappings in ${HOMEDIR}/.vimrc.  Appending them."
     echo \" Activate skim >> ${HOMEDIR}/.vimrc
-    echo 'map ,v :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
-    echo 'map ,p :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
-    echo 'map ,m :w<CR>:silent !make <CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
+    echo 'map ,v :w<CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
+    echo 'map ,p :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
+    echo 'map ,m :w<CR>:silent !make <CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
     echo \" Reactivate VIM >> ${HOMEDIR}/.vimrc
-    echo 'map ,r :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>' >> ${HOMEDIR}/.vimrc
-    echo 'map ,t :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>' >> ${HOMEDIR}/.vimrc
+    echo 'map ,r :w<CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>' >> ${HOMEDIR}/.vimrc
+    echo 'map ,t :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>' >> ${HOMEDIR}/.vimrc
 fi
 
 # set Skim settings
