@@ -42,3 +42,19 @@ function! WhichWindow(filename)
     endfor
 
 endfunction
+
+function! WhichTabNo(bufNo)
+    " returns a list of tabnos where the buf is found or 0 for none.
+    " tabnos start at 1, so 0 is always invalid
+    " from http://stackoverflow.com/questions/8839846/vim-check-if-a-file-is-open-in-current-tab-window-and-activate-it/14427211#14427211
+    let tabNos = []
+    for tabNo in range(1, tabpagenr("$"))
+        for bufInTab in tabpagebuflist(tabNo)
+            if (bufInTab == a:bufNo)
+                call add(tabNos, tabNo)
+            endif
+        endfor
+    endfor
+    let numBufsFound = len(tabNos)
+    return (numBufsFound == 0) ? 0 : tabNos
+endfunction
