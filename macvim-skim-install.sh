@@ -40,8 +40,13 @@ fi
 # Add lines to ~/.vim/ftplugin/tex.vim 
 if [ -e $VIMDIR/ftplugin/tex.vim ];
 then
-    echo "Found a tex.vim in ${HOMEDIR}/ftplugin/.  Appending to it."
-    cat ftplugin/tex.vim >> $VIMDIR/ftplugin/tex.vim
+    if [[ `grep 'map ,[rvpmt]' ${VIMDIR}/ftplugin/tex.vim` == "" ]]; 
+    then
+        echo "Found a tex.vim in ${VIMDIR}/ftplugin/.  Appending to it."
+        cat ftplugin/tex.vim >> $VIMDIR/ftplugin/tex.vim
+    else
+        echo "Found a tex.vim in ${VIMDIR}/ftplugin/, and the Skim bindings appear to already be installed"
+    fi
 else
     cp ftplugin/tex.vim $VIMDIR/ftplugin/tex.vim
 fi
