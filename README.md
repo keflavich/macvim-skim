@@ -1,7 +1,11 @@
 macvim-skim
 ===========
 
-Tools for integrating macvim with Skim.app
+Tools for integrating macvim with Skim.app.  Adds shortcuts to vim so that you can go to the current line in the PDF from a tex document.
+Adds a tool to Skim so that command-clicking on a line brings you to that line in the source code.
+
+Example:
+![Screenshot example of intended environment](https://raw.github.com/keflavich/macvim-skim/master/macvim-skim/test/Example_MacvimSkim.png "Screenshot")
 
 Shortcuts:
  * `,v` - view current .tex file in Skim at current line
