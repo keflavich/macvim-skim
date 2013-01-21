@@ -28,7 +28,11 @@ If you want to specify a different install directory for the executable file, sp
 
 `PREFIX=/usr/local ./macvim-skim-install.sh`
 
-You can also specify the path to `Skim.app` with the variable `SKIMPATH`
+You can also specify the path to `Skim.app` with the variable `SKIMPATH`.  If
+you do not use the default `/Applications/Skim.app`, you'll need to set the vim
+variable `g:macvim_skim_app_path` in your `~/.vimrc` (this step has been
+removed from the automatic installation, as I don't think install scripts
+should modify your `.vimrc`)
 
 ### Manual Install ###
 If you want to install manually, Copy macvim-skim to `~/.vim/plugins/`.  Put
