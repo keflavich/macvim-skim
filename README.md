@@ -4,11 +4,11 @@ macvim-skim
 Tools for integrating macvim with Skim.app
 
 Shortcuts:
-`,v` - view current .tex file in Skim at current line
-`,p` - rebuild current .tex file with `pdflatex -synctex=1`, then active Skim at current line
-`,m` - Run the command `make` in the current directory, then activate Skim at current line
-`,r` - activate Skim at current line, then bring vim back to the front
-`,t` - `,p` + `,r`: rebuild current file, then bring vim back to the front
+ * `,v` - view current .tex file in Skim at current line
+ * `,p` - rebuild current .tex file with `pdflatex -synctex=1`, then active Skim at current line
+ * `,m` - Run the command `make` in the current directory, then activate Skim at current line
+ * `,r` - activate Skim at current line, then bring vim back to the front
+ * `,t` - `,p` + `,r`: rebuild current file, then bring vim back to the front
 
 
 INSTALLATION
@@ -23,7 +23,6 @@ If you want to specify a different install directory for the executable file, sp
 
 `PREFIX=/usr/local ./macvim-skim-install.sh`
 
-Manual Install
-~~~~~~~~~~~~~~
+### Manual Install ###
 If you want to install manually, Copy macvim-skim to `~/.vim/plugins/`.  Put
 `macvim-load-line` on your path.
