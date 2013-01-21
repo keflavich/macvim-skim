@@ -39,12 +39,14 @@ if [[ `grep 'map ,[rvpmt]' ${HOMEDIR}/.vimrc` == "" ]];
 then
     echo "Did not find mappings in ${HOMEDIR}/.vimrc.  Appending them."
     echo \" Activate skim >> ${HOMEDIR}/.vimrc
-    echo 'map ,v :w<CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
-    echo 'map ,p :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
-    echo 'map ,m :w<CR>:silent !make <CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>' >> ${HOMEDIR}/.vimrc
-    echo \" Reactivate VIM >> ${HOMEDIR}/.vimrc
-    echo 'map ,r :w<CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>' >> ${HOMEDIR}/.vimrc
-    echo 'map ,t :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !'$SKIMPATH'/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>' >> ${HOMEDIR}/.vimrc
+    echo let g:macvim_skim_app_path='/Applications/Skim.app' >> ${HOMEDIR}/.vimrc
+    echo 'execute("map ,v :w<CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>")' >> ${HOMEDIR}/.vimrc
+    echo 'execute("map ,p :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>")' >> ${HOMEDIR}/.vimrc
+    echo 'execute("map ,m :w<CR>:silent !make <CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR><CR>")' >> ${HOMEDIR}/.vimrc
+    echo '\" Reactivate VIM' >> ${HOMEDIR}/.vimrc
+    echo 'execute("map ,r :w<CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>")' >> ${HOMEDIR}/.vimrc
+    echo 'execute("map ,t :w<CR>:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p <CR>:silent !".g:macvim_skim_app_path."/Contents/SharedSupport/displayline -r <C-r>=line(".")<CR> %<.pdf %<CR>:silent !osascript -e "tell application \"MacVim\" to activate" <CR><CR>")' >> ${HOMEDIR}/.vimrc
+
 fi
 
 # set Skim settings
