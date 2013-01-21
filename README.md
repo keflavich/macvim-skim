@@ -28,10 +28,12 @@ If you want to specify a different install directory for the executable file, sp
 
 `PREFIX=/usr/local ./macvim-skim-install.sh`
 
+You can also specify the path to `Skim.app` with the variable `SKIMPATH`
+
 ### Manual Install ###
 If you want to install manually, Copy macvim-skim to `~/.vim/plugins/`.  Put
 `macvim-load-line` on your path.
 
 
-#### Aside #### 
+### Aside ###
 Was hosted at http://code.google.com/p/agpy/source/browse/trunk#trunk%2Fmacvim-skim until 1/20/2013.  No issues were posted on agpy, though.

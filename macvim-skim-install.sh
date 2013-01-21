@@ -15,7 +15,7 @@ VIMDIR=$HOME/.vim/
 # curl -s http://agpy.googlecode.com/svn/trunk/macvim-skim/WhichTab.vim > ${VIMDIR}/plugin/WhichTab.vim
 chmod +x macvim-skim/macvim-load-line
 cp macvim-skim/macvim-load-line $PREFIX/bin/
-cp macvim-skim/WhichTab.vim $VIMDIR/
+cp plugin/WhichTab.vim $VIMDIR/plugin/
 
 if [ ! $SKIMPATH ];
 then
@@ -27,8 +27,8 @@ then
     # get Skim.app 
     # should work, but doesn't curl -L http://sourceforge.net/projects/skim-app/files/latest/download?source=files -o Skim.dmg
     echo "Did not find $SKIMPATH.  Downloading and installing latest skim."
-    #curl -L "http://downloads.sourceforge.net/project/skim-app/Skim/Skim-1.3.19/Skim-1.3.19.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fskim-app%2F&ts=1326916683&use_mirror=superb-dca2" -o Skim.dmg
-    curl -L "http://sourceforge.net/projects/skim-app/files/latest/download?source=files -o Skim.dmg"
+    curl -L "http://downloads.sourceforge.net/project/skim-app/Skim/Skim-1.4.1/Skim-1.4.1.dmg?use_mirror=autoselect" -o Skim.dmg
+    #curl -L "http://sourceforge.net/projects/skim-app/files/latest/download?source=files" -o Skim.dmg
     hdid Skim.dmg
     cp -r /Volumes/Skim/Skim.app $SKIMPATH
     hdiutil eject /Volumes/Skim
