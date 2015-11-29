@@ -8,10 +8,14 @@ echo file: $file
 echo line: $line
 echo debug: $debug
 
+if [[ -n "$debug" ]]; then
+    # Echo all the commands
+    set -x
+fi
+
 for server in `mvim --serverlist`
 do
-if [[ $debug ]] ; then echo mvim --servername $server --remote-expr "MVS_Focus('$file', '$line')"; fi
-finished=`mvim --servername $server --remote-expr "MVS_Focus('$file', '$line')"`
+    finished=`mvim --servername $server --remote-expr "MVS_Focus('$file', '$line')"`
     if [[ $finished > 0 ]]
     then
       echo Succeeded on servername: $server
