@@ -9,11 +9,11 @@ Example:
 ![Screenshot example of intended environment](https://raw.github.com/keflavich/macvim-skim/master/macvim-skim/test/Example_MacvimSkim.png "Screenshot")
 
 Shortcuts:
- * `,v` - view current .tex file in Skim at current line
- * `,p` - rebuild current .tex file with `pdflatex -synctex=1`, then active Skim at current line
- * `,m` - Run the command `make` in the current directory, then activate Skim at current line
- * `,r` - activate Skim at current line, then bring vim back to the front
- * `,t` - `,p` + `,r`: rebuild current file, then bring vim back to the front
+ * `<leader>v` - view current .tex file in Skim at current line
+ * `<leader>p` - rebuild current .tex file with `pdflatex -synctex=1`, then active Skim at current line
+ * `<leader>m` - Run the command `make` in the current directory, then activate Skim at current line
+ * `<leader>r` - activate Skim at current line, then bring vim back to the front
+ * `<leader>t` - `<leader>p` + `<leader>r`: rebuild current file, then bring vim back to the front
 
 From Skim:
  * `Shift`-`Command`-click on a line to go to that line in the `.tex` file
